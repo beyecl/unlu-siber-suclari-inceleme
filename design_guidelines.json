@@ -1,0 +1,119 @@
+{
+  "theme_and_archetype": {
+    "theme": "Dark",
+    "archetype": "Archetype 4 (Swiss & High-Contrast) + Tactical Cinematic",
+    "rationale": "Cybersecurity storytelling requires a clinical, authoritative, and tense atmosphere. We avoid the clichéd 'matrix green' in favor of a high-end, forensic documentary aesthetic. Deep obsidian backgrounds with functional, high-contrast accents (Signal Red for attacks, Cyan for defense)."
+  },
+  "colors": {
+    "background": {
+      "default": "#050505",
+      "surface": "#121212",
+      "glass": "rgba(18, 18, 18, 0.7)"
+    },
+    "text": {
+      "primary": "#FFFFFF",
+      "secondary": "#A1A1AA",
+      "muted": "#71717A"
+    },
+    "accent": {
+      "attack_red": "#FF3B30",
+      "warning_amber": "#FF9F0A",
+      "defense_cyan": "#32ADE6",
+      "border": "rgba(255, 255, 255, 0.1)"
+    }
+  },
+  "typography": {
+    "headings": {
+      "family": "Outfit",
+      "weights": ["300", "500", "700"],
+      "tracking": "tracking-tight"
+    },
+    "body_and_data": {
+      "family": "JetBrains Mono",
+      "weights": ["400", "500"],
+      "tracking": "tracking-normal"
+    },
+    "scale": {
+      "h1": "text-5xl sm:text-6xl+ font-light tracking-tighter",
+      "h2": "text-3xl sm:text-4xl font-medium tracking-tight",
+      "h3": "text-xl sm:text-2xl font-medium",
+      "body": "text-base leading-relaxed",
+      "metadata": "text-xs uppercase tracking-[0.2em]"
+    }
+  },
+  "layout_and_spacing": {
+    "spacing_scale": "Use generous spacing: py-24 for sections, gap-12 for grids.",
+    "container": "max-w-7xl mx-auto px-6 lg:px-8",
+    "grid_strategy": "Bento 'Control Room' grid for dashboards/stats. Asymmetrical 'Tetris' grid for storytelling narrative sections.",
+    "borders": "Expose the skeleton. Use grid borders (border-collapse, 1px border-white/10) for data-heavy sections like IOCs and Kill Chain phases."
+  },
+  "surfaces": {
+    "cards": "Flat background (#121212), 1px solid border-white/10, no soft shadows. Hover: border-white/30 and subtle -translate-y-1.",
+    "timeline": "Vertical tracing beam style. A solid left border with a moving gradient highlight to denote the progression of the attack.",
+    "glass": "Backdrop-blur-xl with bg-black/60 and 1px inner border-white/10 for sticky navigation and AI chat panel overlays."
+  },
+  "components_strategy": {
+    "navigation": "Sticky crystal glass header (z-50). Must include language switcher (TR/EN) and AI Assistant trigger.",
+    "hero": "Cinematic text overlay (Outfit font, font-light) over a max bg-black/50 darkened abstract image.",
+    "timeline": "Custom HTML/Tailwind vertical timeline. Left border line, glowing dots for timestamps, JetBrains Mono for dates.",
+    "kill_chain_diagram": "Grid-based horizontal/vertical flow. Use SVG dashed lines and Framer Motion to animate a 'tracing beam' (data exfiltration path) across the phases.",
+    "ai_chat_panel": "Slide-out or floating glassmorphism panel. Input field at bottom, chat bubbles with monospace font for technical output.",
+    "forms": "Shadcn UI forms for Community Submissions. Dark themed, square corners (rounded-none or rounded-sm max).",
+    "testing": "All interactive elements MUST include data-testid (e.g., data-testid='lang-switch-button', data-testid='attack-card-log4j')."
+  },
+  "motion_and_interaction": {
+    "hover": "High contrast shifts. Muted text becomes pure white. Borders glow slightly with accent colors.",
+    "scroll": "Fade in and slide up (using Framer Motion) for timeline events to mimic uncovering forensic evidence.",
+    "diagrams": "Use animated SVG paths (stroke-dasharray/stroke-dashoffset) to simulate attacker lateral movement."
+  },
+  "media": {
+    "images": {
+      "hero_background": {
+        "url": "https://images.unsplash.com/photo-1542903660-eedba2cda473?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNDR8MHwxfHNlYXJjaHwzfHxjeWJlcnNlY3VyaXR5JTIwZGF0YSUyMGJyZWFjaCUyMGFic3RyYWN0fGVufDB8fHx8MTc4MzEwOTMyMXww&ixlib=rb-4.1.0&q=85",
+        "description": "Coding screengrab, darkened for hero background"
+      },
+      "attack_log4j": {
+        "url": "https://images.unsplash.com/photo-1542903660-eedba2cda473?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNDR8MHwxfHNlYXJjaHwzfHxjeWJlcnNlY3VyaXR5JTIwZGF0YSUyMGJyZWFjaCUyMGFic3RyYWN0fGVufDB8fHx8MTc4MzEwOTMyMXww&ixlib=rb-4.1.0&q=85",
+        "description": "Code vulnerability"
+      },
+      "attack_solarwinds": {
+        "url": "https://images.pexels.com/photos/10325707/pexels-photo-10325707.png?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Vibrant orange network lines representing supply chain"
+      },
+      "attack_wannacry": {
+        "url": "https://images.unsplash.com/photo-1618060932014-4deda4932554?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNDR8MHwxfHNlYXJjaHwyfHxjeWJlcnNlY3VyaXR5JTIwZGF0YSUyMGJyZWFjaCUyMGFic3RyYWN0fGVufDB8fHx8MTc4MzEwOTMyMXww&ixlib=rb-4.1.0&q=85",
+        "description": "Red lock on keyboard representing ransomware"
+      },
+      "attack_colonial_pipeline": {
+        "url": "https://images.unsplash.com/photo-1678984240126-70bcddd7a228?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njd8MHwxfHNlYXJjaHwzfHxvaWwlMjBwaXBlbGluZSUyMG5pZ2h0fGVufDB8fHx8MTc4MzEwOTMyMHww&ixlib=rb-4.1.0&q=85",
+        "description": "Industrial pipeline at night"
+      },
+      "attack_equifax": {
+        "url": "https://images.unsplash.com/photo-1633265486064-086b219458ec?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzV8MHwxfHNlYXJjaHwyfHxmaW5hbmNpYWwlMjBkYXRhJTIwYnJlYWNofGVufDB8fHx8MTc4MzEwOTMyMXww&ixlib=rb-4.1.0&q=85",
+        "description": "Golden padlock on keyboard"
+      },
+      "attack_notpetya": {
+        "url": "https://images.pexels.com/photos/37730212/pexels-photo-37730212.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Modern server room infrastructure"
+      },
+      "attack_stuxnet": {
+        "url": "https://images.unsplash.com/photo-1677108226916-03d82e2276a4?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzd8MHwxfHNlYXJjaHwzfHxudWNsZWFyJTIwY2VudHJpZnVnZXxlbnwwfHx8fDE3ODMxMDkzMjF8MA&ixlib=rb-4.1.0&q=85",
+        "description": "Large metal centrifuge object"
+      },
+      "attack_moveit": {
+        "url": "https://images.pexels.com/photos/8452381/pexels-photo-8452381.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Dewy spider web representing file transfer mesh"
+      }
+    },
+    "icons": "lucide-react for UI interactions. Use sharp, technical icons (Terminal, ShieldAlert, Activity, Network)."
+  },
+  "instructions_to_main_agent": [
+    "Install required fonts from Google Fonts: @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;500;700&display=swap');",
+    "Configure Tailwind with the specified font families, extending the default sans to Outfit and mono to JetBrains Mono.",
+    "Build the Timeline component using a left border and relative positioned dots.",
+    "For the MITRE kill chain, create a horizontal or vertical step-by-step layout with connected borders. Use framer-motion to create an animated 'tracing beam' effect on the borders.",
+    "Implement the AI chat panel as a fixed position sliding drawer (Shadcn Sheet or custom) with a distinct glassmorphic background.",
+    "Ensure the localization (TR/EN) state is managed globally (React Context or Zustand) and affects all narrative content.",
+    "Use the provided image URLs exclusively for the attack cards and hero section. DO NOT use placeholder services."
+  ]
+}
