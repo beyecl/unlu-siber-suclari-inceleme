@@ -1,0 +1,36 @@
+{
+  "summary": "Full backend + frontend testing of Threat Chronicles MVP. All 12 backend pytest cases passed (100%). Frontend flows (home, language toggle + localStorage, /attacks list of 8 + filters + search, /attacks/log4j detail with narrative/IOCs/lessons, AI Assistant panel with Claude Sonnet 4.5 for 'WannaCry 2017' rendering Turkish narrative + timeline + kill chain, Submit form success toast + reset) all working end-to-end.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {"endpoint": "/api/submissions?status=<x>", "issue": "Default status filter is 'approved' — a plain GET /api/submissions won't return newly created pending items unless caller passes status=pending or status=all. Might be intentional but easy to misuse for admin UIs."}
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "/attacks (filter dropdowns)", "issues": ["React hydration console warning: '<span> cannot be a child of <option>'. Caused by the preview instrumentation wrapping the text inside <option> with a <span data-ve-dynamic>. Warning is benign but pollutes console. Consider isolating i18n strings for <option> labels so the instrumentation cannot inject a span (e.g. build a static string outside JSX or pass as attribute) if this needs to be cleaned up."]}
+    ]
+  },
+  "test_report_links": ["/app/backend/tests/test_threat_chronicles.py", "/app/test_reports/pytest/pytest_results.xml"],
+  "action_items": [
+    "Optional: address the <option>/<span> hydration warning on /attacks by rendering plain string children in <option> (avoids the preview tooling wrapping the label in a span).",
+    "Optional: consider making GET /api/submissions default include 'pending' or return a shape that documents the default filter."
+  ],
+  "critical_code_review_comments": [
+    "server.py uses deprecated FastAPI @app.on_event('startup'/'shutdown'). Migrate to lifespan handler for future-proofing.",
+    "server.py: AI response parsing falls back to {raw, error} with 200 status. Better UX would be a non-200 code so the frontend error branch triggers; currently frontend does show the parse error via data.error, which works.",
+    "AIAssistantPanel.jsx maps AI kill_chain into activity_tr/activity_en using the same string regardless of the requested language — that's actually correct because the backend already returns strings in the requested language, so language is honoured.",
+    "Frontend axios calls have no timeout for /ai/analyze — a slow backend could hang the UI indefinitely; add ~60s timeout with a friendly error.",
+    "Submit form has no maxLength or length hint for narrative; consider min/max validation on backend Pydantic model."
+  ],
+  "updated_files": ["/app/backend/tests/test_threat_chronicles.py", "/app/test_reports/iteration_1.json", "/app/test_reports/pytest/pytest_results.xml"],
+  "success_rate": {"backend": "100% (12/12)", "frontend": "100% of tested flows"},
+  "test_credentials": "N/A — no auth in this app",
+  "seed_data_creation": "Backend auto-seeds 8 curated attacks on startup (log4j, solarwinds, wannacry, colonial-pipeline, equifax, notpetya, stuxnet, moveit). Test also created two TEST_ submissions via /api/submissions and the Submit form; they remain in DB with status=pending.",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Backend tests live at /app/backend/tests/test_threat_chronicles.py, executed with pytest (junit at /app/test_reports/pytest/pytest_results.xml). AI tests need the internet/emergentintegrations key — the Claude endpoint took ~30-60s per call. If the AI test flakes, allow one retry (test_ai_analyze_en already retries once). Frontend Sheet component for AI panel opens off-canvas; use Enter key on ai-input instead of clicking ai-submit-button (submit button sits at x≈1710 in 1920 viewport and Playwright sometimes flags 'outside viewport' before animation completes).",
+  "rca of the issue": "No critical issue found."
+}
